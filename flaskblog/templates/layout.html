@@ -11,16 +11,16 @@
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 
       {% if title %}
-          <title>Flask Blog - {{ title }}</title>
+          <title>Riposte Blog - {{ title }}</title>
       {% else %}
-          <title>Flask Blog</title>
+          <title>Riposte Blog</title>
       {% endif %}
   </head>
   <body>
       <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
           <div class="container">
-            <a class="navbar-brand mr-4" href="/">Flask Blog</a>
+            <a class="navbar-brand mr-4" href="/">Riposte Blog</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -58,9 +58,12 @@
               {% endwith %}
               {% block content %}{% endblock %}
           </div>
-          {% if current_user %}
+          {% if current_user.is_authenticated %}
             <div class="col-md-4">
               <div class="content-section">
+                <div class="media">
+                  <img class="rounded-circle account-img" src="static/profile_pics/{{ current_user.image_file }}">
+                </div>
                 <h3>{{ current_user.username }}</h3>
                 <small><b>{{ current_user.email }}</b></small>
                 <p class='text-muted'>
@@ -80,7 +83,6 @@
                         <a href="{{ url_for('users.user_posts', username=current_user.username) }}">Your Posts</a>
                       </div>
                     </li>
-                    <li class="list-group-item list-group-item-light">etc</li>
                   </ul>
                 </p>
               </div>
