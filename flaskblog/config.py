@@ -1,6 +1,6 @@
 class Config():
     SECRET_KEY = 'b549f797b61418c135dc2a50d112cc4a'
-    SQLALCHEMY_DATABASE_URI = 'postgres://hnzpctnpifrwva:06e9854f0d6da12b0ebbeb45ea3849f711a0fe28bc30fefae61374a3242f3054@ec2-52-21-247-176.compute-1.amazonaws.com:5432/deriu8cufs5gts'
+    SQLALCHEMY_DATABASE_URI = 'postgres://vltfoelrvscnhw:b9f7cbf975bc54dfba48a3426b7245f6b06da635c6afe664ebc9040b1f8e665f@ec2-3-210-255-177.compute-1.amazonaws.com:5432/d1t8b606fkc7tv'
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 587
     MAIL_USE_TLS = True
