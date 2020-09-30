@@ -7,14 +7,14 @@ from flask_login import UserMixin
 
 @login_manager.user_loader
 def Load_user(user_id):
-    return User.query.get(int(user_id))
+    return Users.query.get(int(user_id))
 
 class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
-    email = db.Column(db.String(20), unique=True, nullable=False)
-    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
-    password = db.Column(db.String(200), nullable=False)
+    email = db.Column(db.String(50), unique=True, nullable=False)
+    image_file = db.Column(db.String(50), nullable=False, default='default.jpg')
+    password = db.Column(db.String(60), nullable=False)
     posts = db.relationship('Posts', backref='author', lazy=True)
 
     def get_reset_token(self, expires_sec=1800):
