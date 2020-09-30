@@ -9,12 +9,12 @@ from flask_login import UserMixin
 def Load_user(user_id):
     return User.query.get(int(user_id))
 
-class User(db.Model, UserMixin):
+class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(20), unique=True, nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
-    password = db.Column(db.String(20), nullable=False)
+    password = db.Column(db.String(200), nullable=False)
     posts = db.relationship('Posts', backref='author', lazy=True)
 
     def get_reset_token(self, expires_sec=1800):
@@ -38,7 +38,7 @@ class Posts(db.Model):
     title = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, unique=True, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     def __repr__(self):
         return f"User('{self.title}', '{self.date_posted}')"

@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileField
 from flask_login import current_user
-from flaskblog.models import User
+from flaskblog.models import Users
 from wtforms import StringField, PasswordField, SubmitField,BooleanField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 
@@ -13,12 +13,12 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
-        user = User.query.filter_by(username=username.data).first()
+        user = Users.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError(f'User with username {username.data} already exists')
     
     def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
+        user = Users.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError(f'User with email {email.data} already exists')
 
@@ -36,13 +36,13 @@ class UpdateAccountForm(FlaskForm):
 
     def validate_username(self, username):
         if username.data != current_user.username:
-            user = User.query.filter_by(username=username.data).first()
+            user = Users.query.filter_by(username=username.data).first()
             if user:
                 raise ValidationError(f'User with username {username.data} already exists')
     
     def validate_email(self, email):
         if email.data != current_user.email:
-            user = User.query.filter_by(email=email.data).first()
+            user = Users.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError(f'User with email {email.data} already exists')
 
@@ -51,7 +51,7 @@ class RequestResetForm(FlaskForm):
     submit = SubmitField('Request Password Reset')
 
     def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
+        user = Users.query.filter_by(email=email.data).first()
         if user is None:
             raise ValidationError("User not exists please register")
 
