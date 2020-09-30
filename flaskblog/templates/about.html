@@ -5,5 +5,18 @@
     </div>
     <h1>Riposte Dance Crew</h1>
     <p><h3>This is Riposte Blog page<br><br>Where current and former members from Riposte Dance Crew<br><br>Can share their experience their memories.</h3></p>
+    <p><h3>
+        In this blog you can register your account and share experience of yours with Riposte.</h3>
+    </p>
+    <p class="link"><h5>
+        To register yourself and create the blogs<br>
+        <a href="{{ url_for('users.register') }}">Please register here..</a></h5>
+    </p>
+    <p><h5>
+        If you have an account<br>
+        <a href="{{ url_for('users.login') }}">You can Sign In here!!</a>
+        <br><br>
+        Thank You</h5>
+    </p>
 {% endblock content %}
 
